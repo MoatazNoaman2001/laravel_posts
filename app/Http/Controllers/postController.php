@@ -30,12 +30,12 @@ class postController extends Controller
         ];
     }
     
-    function showPost($id){
+    function index($id){
         $post = collect($this->getPosts())->firstWhere('id', $id);
         return view('post', ["post" => $post]);
     }
 
-    function showPosts(){
+    function show(){
         return view('posts', ["posts" => $this->getPosts()]);
     }
 

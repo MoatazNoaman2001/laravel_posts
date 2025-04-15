@@ -8,9 +8,9 @@ Route::get('/' , function () {
     return view('root');
 });
 
-Route::get('/posts', [postController::class, "showPosts"]);
+Route::get('/posts', [postController::class, "show"]);
 
-Route::get('/post/{id}',[ postController::class, "showPost" ] );
+Route::get('/post/{id}',[ postController::class, "index" ] );
 
 Route::get('/post/{id}/edit', [postController::class , "edit"])->name('post.edit');
 
