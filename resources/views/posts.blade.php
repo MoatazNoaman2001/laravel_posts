@@ -22,6 +22,8 @@
             <th>desc</th>
 
             <th>content</th>
+
+            <th>UserName</th>
         </thead>
 
         <tbody>
@@ -31,6 +33,7 @@
                     <td>{{$post['title']}}</td>
                     <td>{{$post['description']}}</td>
                     <td>{{$post['content']}}</td>
+                    <td>{{$post['user']}}</td>
                     <td style="display: flex; flex-direction: row; justify-content: space-evenly">
                         <form action="{{ route('post.edit', $post['id']) }}" method="GET">
                             @csrf

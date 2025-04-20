@@ -3,11 +3,23 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 
 Route::get('/' , function () {
     
-    return view('root');
+    for ($i = 0; $i < 5; $i++) {
+        User::create([
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+        ]);
+    }
+    
+    return "created 5 random users successfully ";
 });
 
 Route::get('/posts', [PostController::class, "show"])->name('post.show');

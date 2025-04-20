@@ -50,6 +50,13 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="mb-3">
+                                <select class="form-select" aria-label="Default select example">
+                                    @foreach ($users as $user)
+                                        <option value={{$user->name}}> {{$user->name}}</option>
+                                    @endforeach 
+                                </select>
+                            </div>
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('post.show') }}" class="btn btn-secondary">Back</a>

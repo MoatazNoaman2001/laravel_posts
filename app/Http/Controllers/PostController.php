@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 
@@ -26,7 +27,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('createPost');
+        // return "done2";
+
+        $users=User::all();
+        return view('createPost', ['users'=>$users]);
     }
 
     /**
@@ -34,16 +38,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-       
-        return view("/posts" , ['posts'=>$posts]);
+       return "done";
+        // return view("posts" , ['posts'=>$posts]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post,)
+    public function show()
     {
-        $posts = Post::All();
+        $posts = Post::with('user')->get();
         return view("posts" , [
             "posts"=> $posts
         ]);
