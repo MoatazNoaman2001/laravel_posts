@@ -33,7 +33,7 @@
                     <td>{{$post['title']}}</td>
                     <td>{{$post['description']}}</td>
                     <td>{{$post['content']}}</td>
-                    <td>{{$post['user']}}</td>
+                    <td>{{$post['user']['name']??""}}</td>
                     <td style="display: flex; flex-direction: row; justify-content: space-evenly">
                         <form action="{{ route('post.edit', $post['id']) }}" method="GET">
                             @csrf

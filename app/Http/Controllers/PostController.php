@@ -38,8 +38,21 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-       return "done";
-        // return view("posts" , ['posts'=>$posts]);
+        // validate
+        $validated = $request->validated();
+        $data = $request->all();
+        $user = User::where('name' , $data['user_id'])->first();
+        print_r($user);
+        // create
+        $post = Post::create([
+            'title' => $data['title'],
+            'content' => $data['content'],
+            'user_id' => $user['id'],
+            'image'=>""
+        ]);
+
+        // Redirect 
+        return redirect()->route('post.show')->with('success', 'Post created successfully');
     }
 
     /**
@@ -72,16 +85,13 @@ class PostController extends Controller
 
         $validated = $request->validated();
 
-    
-        if ($post !== false){
-            $affected = DB::update(
-                'update post set title = ? where content = ?',
-                [$request->title, $request->content]
-            );
-    
-            return view('posts', ["posts" => $posts]);
-        }
-        return resposnse()->json(['msg'=>"cant find " . $id], 404);
+        $post->update([
+            'title' => $data['title'],
+            'content' => $data['content'],
+        ]);
+        
+        // Redirec 
+        return redirect()->route('post.show')->with('success', 'Post updated successfully');
     }
 
     /**

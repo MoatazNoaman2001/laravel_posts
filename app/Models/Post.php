@@ -7,7 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $table="post";
-    use HasUuids;
+    protected $fillable = [
+        'title',
+        'content',
+        'user_id',
+        'image'
+    ];
 
     public function user()
     {

@@ -21,9 +21,8 @@
                         <h4 class="mb-0">Create New Post</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('post.store') }}" method="POST">
+                        <form action="/posts" method="POST">
                             @csrf
-                            @method('POST')
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" 
@@ -51,7 +50,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <select class="form-select" aria-label="Default select example">
+                                <select class="form-select" name="user_id" aria-label="Default select example">
                                     @foreach ($users as $user)
                                         <option value={{$user->name}}> {{$user->name}}</option>
                                     @endforeach 
@@ -59,7 +58,6 @@
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="{{ route('post.show') }}" class="btn btn-secondary">Back</a>
                                 <button type="submit" class="btn btn-primary">Create Post</button>
                             </div>
                         </form>
